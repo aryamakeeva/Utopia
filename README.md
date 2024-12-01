@@ -9,9 +9,11 @@ It is a Python toolkit designed for DNA/RNA sequence manipulations and FASTQ seq
 
 ## Installation
 To use the Utopian_bioinf tool, follow steps bellow:
-```git clone git@github.com:aryamakeeva/Utopia.git
+```bash
+git clone git@github.com:aryamakeeva/Utopia.git
 cd Utopia
-python Utopian_bioinf.py ```
+python Utopian_bioinf.py
+```
 
 ## Functions Overview
 1. `run_dna_rna_tools`
