@@ -7,14 +7,6 @@ It is a Python toolkit designed for DNA/RNA sequence manipulations and FASTQ seq
 1. `run_dna_rna_tools` : Manipulate DNA/RNA sequences (generate transcribed, reversed, complemented and  reverse-complemented sequences).
 2. `filter_fastq`: Filter FASTQ sequences from dictionary (for now) based on defined thresholds for GC content, length, and quality.
 
-## Installation
-To use the Utopian_bioinf tool, follow steps bellow:
-```bash
-git clone git@github.com:aryamakeeva/Utopia.git
-cd Utopia
-python Utopian_bioinf.py
-```
-
 ## Functions Overview
 1. `run_dna_rna_tools`
 
@@ -42,6 +34,14 @@ Arguments:
 - quality_threshold: The threshold for filtering by sequence quality. Default is 0.
 
 Returns: filtered_seqs: filtered dictionary {name: (sequence, quality)}
+
+## Installation
+To use the Utopian_bioinf tool, follow steps bellow:
+```bash
+git clone git@github.com:aryamakeeva/Utopia.git
+cd Utopia
+python Utopian_bioinf.py
+```
 
 ## Contact
 
