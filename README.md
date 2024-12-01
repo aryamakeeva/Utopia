@@ -17,13 +17,9 @@ This function allows users to perform DNA/RNA sequence manipulations, including:
 - complement: Generate the complement of a sequence.
 - reverse_complement: Generate the reverse complement.
 
-Arguments:
+Arguments: *args: The sequences followed by the procedure type ("transcribe", "reverse", "complement", "reverse_complement").
 
-*args: The sequences followed by the procedure type ("transcribe", "reverse", "complement", "reverse_complement").
-
-Returns:
-
-A single manipulated sequence (if one is provided) or a list of sequences.
+Returns: A single sequence (if one is provided) or a list of sequences.
 
 2. `filter_fastq`
 
