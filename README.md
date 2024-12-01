@@ -30,7 +30,6 @@ This function filters fastq sequences based on the following criteria: GC conten
 Arguments:
 
 - seq: dict - a dictionary {name: (sequence, quality)}
-- output_fastq: filtered sequences (saved in the filtered folder).
 - gc_bounds: The GC content bounds for filtering. Default is (0, 100).
 - length_bounds: The sequence length bounds for filtering. Default is (0, 2**32).
 - quality_threshold: The threshold for filtering by sequence quality. Default is 0.
