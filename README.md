@@ -5,7 +5,7 @@ Learning how to code softly and gently
 It is a Python toolkit designed for DNA/RNA sequence manipulations and FASTQ sequence filtering based on GC content, sequence length and quality threshold. The toolkit provides two main functionalities:
 
 1. `run_dna_rna_tools` : Manipulate DNA/RNA sequences (generate transcribed, reversed, complemented and  reverse-complemented sequences).
-2. `filter_fastq`: Filter FASTQ sequences based on defined thresholds for GC content, length, and quality.
+2. `filter_fastq`: Filter FASTQ sequences from dictionary (for now) based on defined thresholds for GC content, length, and quality.
 
 ## Functions Overview
 1. `run_dna_rna_tools`
