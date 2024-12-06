@@ -23,13 +23,13 @@ This function allows users to perform DNA/RNA sequence operations, including:
 - complement: Generate the complement of a sequence.
 - reverse_complement: Generate the reverse complement.
 
-Input:
+*Input:*
 
 One or more n.a. sequences followed by one of 4 operations, where the last argument is the function name.
 
 Returns: A single sequence (if one is provided) or a list of sequences.
 
-~Example~
+*Example*
 
 ```python
 from bioinf_seqs import run_dna_rna_tools
@@ -48,7 +48,7 @@ results = run_dna_rna_tools("ttG", "AT", "ATc", "complement")
 
 This function filters Filters FASTQ sequences by GC content, sequence length, and quality threshhold.
 
-Input:
+*Input:*
 
 - input_fastq : pass to file from current directory or name of the FASTQ file in current directory
 - output_fastq : name of the filtered FASTQ file.
@@ -61,7 +61,7 @@ Input:
 
 - quality_threshold: quality threshold for filtering. Defaults to 0.
 
-Example
+*Example*
 
 ```python
 from utopian_seqs import filter_fastq
