@@ -1,5 +1,5 @@
 # Utopian tools
-Learning how to code softly and gently. This repository is the result of half-year Python course. It provite 2 toolskits: `Utopian Seqs` and `Utopian Files`.
+Learning how to code softly and gently. This repository is the result of half-year Python course. It provide 2 toolskits: `Utopian Seqs` and `Utopian Files`.
 
 ## Installation
 ```bash
