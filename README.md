@@ -13,6 +13,7 @@ Is a Python toolkit designed for operations with DNA/RNA sequences and FASTQ seq
 1. `run_dna_rna_tools` : Manipulates with DNA/RNA sequences, including functions to generate transcribed, reversed, complemented, and reverse-complemented sequences.
 2. `filter_fastq`: Filter FASTQ sequences based on defined thresholds for GC content, length, and quality.
 
+
 ### `run_dna_rna_tools`
 
 This function allows users to perform DNA/RNA sequence operations, including:
@@ -22,13 +23,11 @@ This function allows users to perform DNA/RNA sequence operations, including:
 - complement: Generate the complement of a sequence.
 - reverse_complement: Generate the reverse complement.
 
-~Input:~
+Input:
 
 One or more n.a. sequences followed by one of 4 operations, where the last argument is the function name.
 
-~Returns:~
-
-A single manipulated sequence (if one is provided) or a list of sequences.
+Returns: A single sequence (if one is provided) or a list of sequences.
 
 ~Example~
 
@@ -49,7 +48,7 @@ results = run_dna_rna_tools("ttG", "AT", "ATc", "complement")
 
 This function filters Filters FASTQ sequences by GC content, sequence length, and quality threshhold.
 
-~Input:~
+Input:
 
 - input_fastq : pass to file from current directory or name of the FASTQ file in current directory
 - output_fastq : name of the filtered FASTQ file.
@@ -62,7 +61,7 @@ This function filters Filters FASTQ sequences by GC content, sequence length, an
 
 - quality_threshold: quality threshold for filtering. Defaults to 0.
 
-~Example~
+Example
 
 ```python
 from utopian_seqs import filter_fastq
@@ -136,6 +135,15 @@ Matching genes:
 4: dtpA
 Enter the numbers of desired genes separated by commas (e.g., 1,3):  1
 Gene(s) and neighbours are now in output.fasta.
+```
+
+
+## Installation
+To use the Utopian_bioinf tool, follow steps bellow:
+```bash
+git clone git@github.com:aryamakeeva/Utopia.git
+cd Utopia
+python Utopian_bioinf.py
 ```
 
 ## Contact
