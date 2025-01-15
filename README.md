@@ -1,27 +1,36 @@
 # Utopian tools
-Learning how to code softly and gently. This repository is the result of half-year Python course. It provite 2 toolskits: `Utopian Seqs` and `Utopian Files`.
+Learning how to code softly and gently. 
 
-## Installation
+This repository is the result of a half-year Python course and provides two toolkits: `Utopian Seqs` and `Utopian Files`. 
+
+- `Utopian Seqs` is designed for operations with DNA/RNA sequences and FASTQ sequence filtration based on GC content, sequence length, and quality threshold.  
+- `Utopian Files` is designed for processing bioinformatics files:
+  - Converts a multi-line FASTA file into a new format where each sequence is on a single line.
+  - Extracts and alphabetically sorts the best matches from BLAST results, saving the names of top matching proteins.
+  - Extracts specific genes and their protein sequences from GenBank files, saving them in FASTA format for use in BLAST analysis.
+
+## Content
+- [Installation](#installation)
+- [Usage](#usage)
+  - [Utopian Seqs](#utopian-seqs)
+    - [dna_rna_tool](#dna_rna_tool)
+    - [fastq_filter_tool](#fastq_filter_tool)
+  - [Utopian Files](#utopian-files)
+    - [convert_multiline_fasta_to_oneline](#convert_multiline_fasta_to_oneline)
+    - [parse_blast_output](#parse_blast_output)
+    - [select_genes_from_gbk_to_fasta](#select_genes_from_gbk_to_fasta)
+- [Contact](#contact)
+
+## Installation 
 ```bash
 git clone git@github.com:aryamakeeva/Utopia.git
 ```
-## Utopian Seqs
+## Usage
 
-### Description
-Is a Python toolkit designed for operations with DNA/RNA sequences and FASTQ sequence filtration based on GC content, sequence length and quality threshold. The toolkit provides two main functionalities:
+### Utopian Seqs
+The toolkit provides two main functionalities:
 
-1. `run_dna_rna_tools` : Manipulates with DNA/RNA sequences, including functions to generate transcribed, reversed, complemented, and reverse-complemented sequences.
-2. `filter_fastq`: Filter FASTQ sequences based on defined thresholds for GC content, length, and quality.
-
-
-### `run_dna_rna_tools`
-
-This function allows users to perform DNA/RNA sequence operations, including:
-
-- transcribe: Convert DNA to RNA.
-- reverse: Reverse a sequence.
-- complement: Generate the complement of a sequence.
-- reverse_complement: Generate the reverse complement.
+1. `dna_rna_tool` : Manipulates with DNA/RNA sequences, generates transcribed, reversed, complemented, and reverse-complemented sequences.
 
 *Input:*
 
@@ -32,21 +41,17 @@ Returns: A single sequence (if one is provided) or a list of sequences.
 *Example*
 
 ```python
-from bioinf_seqs import run_dna_rna_tools
+from utopian_seqs import dna_rna_tool
 
 # For a single sequence
-result = run_dna_rna_tools("ATG", "transcribe")
-# Returns: "AUG"
+result = dna_rna_tool ("ATG", "transcribe")
+# Returns: 'AUG'
 
 # For multiple sequences
-results = run_dna_rna_tools("ttG", "AT", "ATc", "complement")
-# Returns: "aaC", "TA", "TAg" 
+results = dna_rna_tool("ttG", "AT", "ATc", "complement")
+# Returns: 'aaC', 'TA', 'TAg' 
 ```
-
-
-### `filter_fastq`
-
-This function filters Filters FASTQ sequences by GC content, sequence length, and quality threshhold.
+2. `fastq_filter_tool`: Filters FASTQ sequences based on defined thresholds for GC content, length, and quality threshhold.
 
 *Input:*
 
@@ -58,16 +63,15 @@ This function filters Filters FASTQ sequences by GC content, sequence length, an
 
 - length_bounds: sequence length interval for filtering. Defaults to (0, 2**32).
 
-
 - quality_threshold: quality threshold for filtering. Defaults to 0.
 
 *Example*
 
 ```python
-from utopian_seqs import filter_fastq
+from utopian_seqs import fastq_filter_tool
 
 # Input
-filter_fastq(
+fastq_filter_tool(
     input_fastq="pass_to_file/file_name.fastq",
     output_fastq="output_file_name.fastq",
     gc_bounds=(30, 80),
@@ -75,27 +79,19 @@ filter_fastq(
     quality_threshold=20
 )
 ```
-## Utopian Files
+### Utopian Files
 
-### Description
+The toolkit includes the following functionalities:
 
-This Python toolkit is designed for processing bioinformatics files, offering functions to manipulate and extract data from various bioinformatics file formats. The toolkit includes the following functionalities:
-
-1. `convert_multiline_fasta_to_oneline`: Takes an input FASTA file where sequences (DNA/RNA/protein, etc.) are splited across multiple lines and makes a new FASTA file where each sequence is contained in a single line. 
-  
-2. `parse_blast_output`: Extracts the best matches from BLAST results for each sequence and saves the names of the best matching proteins in a new file, sorted alphabetically. 
-
-3. `select_genes_from_gbk_to_fasta`: This function extracts specific genes, their aminoacid sequence and surrounding genes from a GenBank file. The extracted protein sequences (translations) are saved in a FASTA file, which can be directly used in BLAST analysis for further exploration.
-
-### `convert_multiline_fasta_to_oneline`
+1. `convert_multiline_fasta_to_oneline`: Takes an input FASTA file where sequences (DNA/RNA/protein, etc.) are splited across multiple lines and makes a new FASTA file where each sequence is contained in a single line.
 
 - input_fasta: the path to the input FASTA file containing sequences split across multiple lines.
     
 - output_fasta: the path to the output FASTA file where the single-line sequences will be saved.
 
 If not provided, the output will be saved to a default file.
-
-### `parse_blast_output`
+  
+2. `parse_blast_output`: Extracts the best matches from BLAST results for each sequence and saves the names of the best matching proteins in a new file, sorted alphabetically.
 
 This function parses a BLAST output file and extracts the first description line for each QUERY, saves the list of proteins to a new file sorted alphabetically.
 
@@ -110,9 +106,7 @@ from utopian_files import parse_blast_output
 parse_blast_output('./filename.txt', 'output_filename.txt')
 ```
 
-### `select_genes_from_gbk_to_fasta`
-
-This function extracts genes and their neighboring genes from a GBK file, retrieves their amino acid sequences, and saves them to a FASTA file.
+3. `select_genes_from_gbk_to_fasta`: This function extracts specific genes, their aminoacid sequence and surrounding genes from a GenBank file. The extracted protein sequences (translations) are saved in a FASTA file, which can be directly used in BLAST analysis for further exploration.
 
 ```python
 from utopian_files import select_genes_from_gbk_to_fasta
@@ -135,15 +129,6 @@ Matching genes:
 4: dtpA
 Enter the numbers of desired genes separated by commas (e.g., 1,3):  1
 Gene(s) and neighbours are now in output.fasta.
-```
-
-
-## Installation
-To use the Utopian_bioinf tool, follow steps bellow:
-```bash
-git clone git@github.com:aryamakeeva/Utopia.git
-cd Utopia
-python Utopian_bioinf.py
 ```
 
 ## Contact
