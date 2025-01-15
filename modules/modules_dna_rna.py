@@ -1,74 +1,51 @@
-def validation(*seqs):
+"""
+Module for DNA and RNA sequence manipulations, including validation, transcription, 
+and generation of complement and reverse complement sequences.
+"""
+
+def validation(*seqs: str) -> list[str]:
+    """
+    Validates DNA or RNA sequences.
+    """
     dna_bases = {"A", "a", "T", "t", "C", "c", "G", "g"}
     rna_bases = {"A", "a", "U", "u", "C", "c", "G", "g"}
 
-    results = []
-    for seq in seqs:
-        sequence_set = set(seq)
+    return [
+        "DNA" if set(seq).issubset(dna_bases) else "RNA" if set(seq).issubset(rna_bases) else "NotNA"
+        for seq in seqs
+    ]
 
-        if sequence_set.issubset(dna_bases):
-            results.append("DNA")
-        elif sequence_set.issubset(rna_bases):
-            results.append("RNA")
-        else:
-            results.append("NotNA")
-
-    return results
-
-
-def reverse(*seqs):
+def reverse(*seqs: str) -> list[str]:
+    """
+    Reverses the input DNA/RNA sequences.
+    """
     return [seq[::-1] for seq in seqs]
 
 
-def transcribe(*seqs):  # мы не транскрибируем  из РНК ДНК
-    transcribe_d = {
-        "T": "U",
-        "A": "A",
-        "G": "G",
-        "C": "C",
-        "t": "u",
-        "a": "a",
-        "g": "g",
-        "c": "c",
+def transcribe(*seqs: str) -> list[str]: 
+    """
+    Transcribes DNA sequences to RNA by replacing 'T' with 'U' and 't' with 'u'.
+    """
+    return [seq.replace("T", "U").replace("t", "u") for seq in seqs]
+
+
+def complement(*seqs: str) -> list[str]:
+    """
+    Returns the complementary DNA/RNA sequence for each input sequence.
+    """
+    complement_dict = {
+        "A": "T", "C": "G", "G": "C", "T": "A",
+        "a": "t", "c": "g", "g": "c", "t": "a",
+        "U": "A", "u": "a"
     }
 
-    out_seqs = []
-
-    for seq in seqs:
-        out_seq = []
-        for nucl in seq:
-            out_seq.append(transcribe_d.get(nucl, ""))
-        out_seqs.append("".join(out_seq))
-
-    return out_seqs[0] if len(out_seqs) == 1 else out_seqs
+    return [
+        "".join([complement_dict.get(nucl, "") for nucl in seq]) for seq in seqs
+    ]
 
 
-def complement(*seqs):
-    complement = {
-        "A": "T",
-        "C": "G",
-        "G": "C",
-        "T": "A",
-        "a": "t",
-        "c": "g",
-        "g": "c",
-        "t": "a",
-        "U": "A",
-        "u": "a",
-    }
-
-    out_seqs = []
-
-    for seq in seqs:
-        out_seq = []
-        for nucl in seq:
-            if nucl in complement:
-                out_seq.append(complement[nucl])
-
-        out_seqs.append("".join(out_seq))
-
-    return out_seqs[0] if len(out_seqs) == 1 else out_seqs
-
-
-def reverse_complement(*seqs):
+def reverse_complement(*seqs: str) -> list[str]:
+    """
+    Returns the reverse complement of the input DNA/RNA sequences.
+    """
     return complement(*reverse(*seqs))
