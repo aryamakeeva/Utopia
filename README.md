@@ -3,7 +3,7 @@ Learning how to code softly and gently.
 
 This repository is the result of a half-year Python course and provides two toolkits: `Utopian Seqs` and `Utopian Files`. 
 
-- `Utopian Seqs` is designed for operations with DNA/RNA sequences and FASTQ sequence filtration based on GC content, sequence length, and quality threshold.  
+- `Utopian Seqs` is designed for operations with DNA/RNA/AminoAcid sequences and FASTQ files filtration based on GC content, sequence length, and quality threshold.  
 - `Utopian Files` is designed for processing bioinformatics files:
   - Converts a multi-line FASTA file into a new format where each sequence is on a single line.
   - Extracts and alphabetically sorts the best matches from BLAST results, saving the names of top matching proteins.
@@ -28,10 +28,33 @@ git clone git@github.com:aryamakeeva/Utopia.git
 ## Usage
 
 ### Utopian Seqs
-The toolkit provides two main functionalities:
+The toolkit provides several classes and functionalities for manipulating biological sequences:
 
-1. `dna_rna_tool` : Manipulates with DNA/RNA sequences, generates transcribed, reversed, complemented, and reverse-complemented sequences.
+1. `BiologicalSequence`
+This is the **base class** for all biological sequences. It includes common functionality such as:
 
+- **Length Calculation**
+- **Indexing**
+- **Concatenation**
+- **String Representation**
+
+2. `NucleicAcidSequence` (Subclass of `BiologicalSequence`)
+This class is for **DNA/RNA sequences**. It includes methods that:
+
+- Validate DNA or RNA sequences
+- Generate reversed, complemented, and reverse-complemented sequences
+
+**Subclasses**:
+
+- **`DNASequence`**: Works with DNA sequences with additional functionality for **transcription** to RNA.
+- **`RNASequence`**
+
+3. `AminoAcidSequence` (Subclass of `BiologicalSequence`)
+This class is for **amino acid sequences**. It includes methods that:
+
+- Validate amino acid sequences
+- Calculate the **transcript length** 
+  
 *Input:*
 
 One or more n.a. sequences followed by one of 4 operations, where the last argument is the function name.
@@ -41,16 +64,20 @@ Returns: A single sequence (if one is provided) or a list of sequences.
 *Example*
 
 ```python
-from utopian_seqs import dna_rna_tool
+from utopian_seqs import DNASequence, RNASequence
 
-# For a single sequence
-result = dna_rna_tool ("ATG", "transcribe")
-# Returns: 'AUG'
-
-# For multiple sequences
-results = dna_rna_tool("ttG", "AT", "ATc", "complement")
-# Returns: 'aaC', 'TA', 'TAg' 
+# For a single DNA sequence
+dna = DNASequence("ATGCT")
+dna.complement()
+# Returns: 'TACGA'
+dna.reverse()
+# Returns: 'TCGTA'
+dna.transcribe()
+# Returns: 'AUGCU'
+DNASequence("ATGC") + DNASequence("AATC")
+# Returns: 'ATGCAATC'
 ```
+
 2. `fastq_filter_tool`: Filters FASTQ sequences based on defined thresholds for GC content, length, and quality threshhold.
 
 *Input:*
