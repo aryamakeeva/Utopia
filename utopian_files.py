@@ -8,11 +8,11 @@ def convert_multiline_fasta_to_oneline(
     Converts a multi-line FASTA sequence to a single-line format and saves it to a new file.
     -------------------------------
     Parametrs:
-    
-    input_fasta: str 
+
+    input_fasta: str
         - the path to the input FASTA file containing sequences split across multiple lines.
-    
-    output_fasta: str (optional) 
+
+    output_fasta: str (optional)
         - the path to the output FASTA file where the single-line sequences will be saved.
     If not provided, the output will be saved to a default file.
     """
@@ -43,11 +43,11 @@ def parse_blast_output(input_file: str, output_file: str):
     saves the list of proteins to a new file sorted alphabetically.
     -------------------------------
     Parametrs:
-    
-    input_file: str 
+
+    input_file: str
         - the path to the input BLAST output file (txt format).
-        
-    output_file: str 
+
+    output_file: str
         - the path to the output file where the extracted protein descriptions will be saved.
     """
 
@@ -77,20 +77,20 @@ def select_genes_from_gbk_to_fasta(
     and saves them to a FASTA file.
     -------------------------------
     Parameters:
-    
-    input_gbk: str 
+
+    input_gbk: str
         - the path to the input GBK file.
-        
-    genes: str 
+
+    genes: str
         - a list of genes of interest. The program finds all matches
         (e.g., abc, abc_1, abc_A) and asks the user to confirm which genes to select.
-        
-    n_before: int (default = 1) 
-        - the number of neighboring genes to retrieve before the gene of interest. 
-    n_after: int (default = 1) 
-        - the number of neighboring genes to retrieve after the gene of interest. 
-    
-    output_fasta: str 
+
+    n_before: int (default = 1)
+        - the number of neighboring genes to retrieve before the gene of interest.
+    n_after: int (default = 1)
+        - the number of neighboring genes to retrieve after the gene of interest.
+
+    output_fasta: str
         - the path to the output FASTA file where the amino acid sequences will be saved.
     """
 
