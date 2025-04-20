@@ -13,14 +13,23 @@ This repository is the result of a half-year Python course and provides two tool
 ## Repository Structure
 .
 ├── example_files/               # Example files for working with the repository
+
 │   ├── example_blast_results.txt  
-│   ├── example_gbk.gbk           
-│   ├── example_fastq.fastq       
+
+│   ├── example_gbk.gbk   
+
+│   ├── example_fastq.fastq
+
 │   └── example_multiline_fasta.fasta 
+
 ├── fastq_filter_test.py          # Tests for filtering FASTQ files
+
 ├── requirements.txt              # Dependencies for the project
+
 ├── utopian_BioSeqs.py            # Tool for working with biological sequences
+
 ├── utopian_fastqfilter.py        # Tool for filtering FASTQ data
+
 └── utopian_files.py              # Tool for processing bioinformatics files
 
 ## Content
