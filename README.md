@@ -3,11 +3,25 @@ Learning how to code softly and gently.
 
 This repository is the result of a half-year Python course and provides two toolkits: `Utopian Seqs` and `Utopian Files`. 
 
-- `Utopian Seqs` is designed for operations with DNA/RNA/AminoAcid sequences and FASTQ files filtration based on GC content, sequence length, and quality threshold.  
+- `Utopian BioSeqs` is designed for operations with DNA/RNA/AminoAcid sequences
+- `Utopian FastQ Filter` is designed for FASTQ files filtration based on GC content, sequence length, and quality threshold.  
 - `Utopian Files` is designed for processing bioinformatics files:
   - Converts a multi-line FASTA file into a new format where each sequence is on a single line.
   - Extracts and alphabetically sorts the best matches from BLAST results, saving the names of top matching proteins.
   - Extracts specific genes and their protein sequences from GenBank files, saving them in FASTA format for use in BLAST analysis.
+
+## Repository Structure
+.
+├── example_files/               # Example files for working with the repository
+│   ├── example_blast_results.txt  
+│   ├── example_gbk.gbk           
+│   ├── example_fastq.fastq       
+│   └── example_multiline_fasta.fasta 
+├── fastq_filter_test.py          # Tests for filtering FASTQ files
+├── requirements.txt              # Dependencies for the project
+├── utopian_BioSeqs.py            # Tool for working with biological sequences
+├── utopian_fastqfilter.py        # Tool for filtering FASTQ data
+└── utopian_files.py              # Tool for processing bioinformatics files
 
 ## Content
 - [Installation](#installation)
@@ -27,7 +41,7 @@ git clone git@github.com:aryamakeeva/Utopia.git
 ```
 ## Usage
 
-### Utopian Seqs
+### Utopian BioSeqs
 The toolkit provides several classes and functionalities for manipulating biological sequences:
 
 1. `BiologicalSequence`
@@ -78,7 +92,8 @@ DNASequence("ATGC") + DNASequence("AATC")
 # Returns: 'ATGCAATC'
 ```
 
-2. `fastq_filter_tool`: Filters FASTQ sequences based on defined thresholds for GC content, length, and quality threshhold.
+### Utopian FastqFilter
+`fastq_filter_tool`: Filters FASTQ sequences based on defined thresholds for GC content, length, and quality threshhold.
 
 *Input:*
 
@@ -94,17 +109,31 @@ DNASequence("ATGC") + DNASequence("AATC")
 
 *Example*
 
-```python
-from utopian_seqs import fastq_filter_tool
+```bash 
+python3 utopian_fastqfilter.py -h
 
-# Input
-fastq_filter_tool(
-    input_fastq="pass_to_file/file_name.fastq",
-    output_fastq="output_file_name.fastq",
-    gc_bounds=(30, 80),
-    length_bounds=(10, 50),
-    quality_threshold=20
-)
+usage: fastq_filter_tool [-h] [--gc_bounds GC_BOUNDS GC_BOUNDS] [--length_bounds LENGTH_BOUNDS LENGTH_BOUNDS] [--quality_threshold QUALITY_THRESHOLD]
+                         [--log_level {DEBUG,INFO,WARNING,ERROR,CRITICAL}]
+                         input_fastq output_fastq
+
+Filter FASTQ reads by GC content, length, and quality.
+
+positional arguments:
+  input_fastq           Path to the input FASTQ file.
+  output_fastq          Path to save the filtered FASTQ file.
+
+options:
+  -h, --help            show this help message and exit
+  --gc_bounds GC_BOUNDS GC_BOUNDS
+                        Min and max GC content, e.g. --gc_bounds 30 70 (default: 0 100)
+  --length_bounds LENGTH_BOUNDS LENGTH_BOUNDS
+                        Min and max sequence length (default: all sequenses)
+  --quality_threshold QUALITY_THRESHOLD
+                        Minimum average quality score (default: 0)
+  --log_level {DEBUG,INFO,WARNING,ERROR,CRITICAL}
+                        Logging level (default: INFO)
+
+💚 Developed during IB2024-2025 Python Course by aryamakeeva
 ```
 ### Utopian Files
 
