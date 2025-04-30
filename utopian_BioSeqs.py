@@ -1,37 +1,4 @@
 from abc import ABC, abstractmethod
-from Bio import SeqIO
-from Bio.SeqUtils import GC
-
-
-def fastq_filter_tool(
-    input_fastq: str,
-    output_fastq: str,
-    gc_bounds: float | tuple[float, float] = (0, 100),
-    length_bounds: int | tuple[int, int] = (0, 2 ** 32),
-    quality_threshold: int = 0,
-):
-
-    if isinstance(gc_bounds, (int, float)):
-        gc_bounds = (0, gc_bounds)
-    if isinstance(length_bounds, int):
-        length_bounds = (0, length_bounds)
-
-    count = 0
-    with open(output_fastq, "w") as output_handle:
-        for record in SeqIO.parse(input_fastq, "fastq"):
-            sequence = record.seq
-            quality = record.letter_annotations["phred_quality"]
-
-            if (
-                gc_bounds[0] <= GC(sequence) <= gc_bounds[1]
-                and length_bounds[0] <= len(sequence) <= length_bounds[1]
-                and sum(quality) / len(quality) >= quality_threshold
-            ):
-                SeqIO.write(record, output_handle, "fastq")
-                count += 1
-
-    if count == 0:
-        print("The reads were filtered out... Survival rate: 0%.")
 
 
 class BiologicalSequence(ABC):
